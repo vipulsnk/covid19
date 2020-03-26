@@ -5,14 +5,15 @@ import { View, Text } from 'react-native'
 import BottomTabBar from 'App/Components/BottomTabBar'
 import TopTabBar from 'App/Components/TopTabBar'
 import CovidVisualiser from 'App/Components/CovidVisualiser'
-
+import style from './HomeScreenStyle'
 export default class HomeScreen extends React.Component {
   render() {
     return (
-      <View style={{flex:1}}>
+      <View style={style.topContainer}>
         {/* <TopTabBar /> */}
-        <CovidVisualiser />
-        <BottomTabBar />
+        {/* <CovidVisualiser />         */}
+        {/* <Text>HomeScreen</Text> */}
+        <Text>HOme </Text>
       </View>
     )
   }
