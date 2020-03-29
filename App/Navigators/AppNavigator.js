@@ -7,6 +7,10 @@ import VisualiserScreen from 'App/Containers/VisualiserScreen/VisualiserScreen'
 import StatisticScreen from 'App/Containers/StatisticsScreen/StatisticScreen'
 import ReminderScreen from 'App/Containers/ReminderScreen/ReminderScreen'
 import SocialMediaScreen from 'App/Containers/SocialMediaScreen/SocialMediaScreen'
+import MythBusterScreen from 'App/Containers/MythBusterScreen/MythBusterScreen'
+import GettingWorkplaceReadyScreen from 'App/Containers/GettingWorkplaceReadyScreen/GettingWorkplaceReadyScreen'
+import HealthyParentingScreen from 'App/Containers/HealthyParentingScreen/HealthyParentingScreen'
+import UsingMasks from 'App/Containers/UsingMaskScreen/UsingMasks'
 /**
  * The root screen contains the application's navigation.
  *
@@ -24,7 +28,12 @@ const StackNavigator = createStackNavigator(
     Visualiser: VisualiserScreen,
     Statistics: StatisticScreen,
     Reminder: ReminderScreen,
-    SocialMedia: SocialMediaScreen
+    SocialMedia: SocialMediaScreen,
+    MB: MythBusterScreen,
+    GWP: GettingWorkplaceReadyScreen,
+    HP: HealthyParentingScreen,
+    UM: UsingMasks
+
   },
   {
     // By default the application will show the splash screen

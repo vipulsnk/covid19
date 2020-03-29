@@ -1,19 +1,30 @@
 import React from 'react'
-import styles from './HomeScreenStyle'
-import { Helpers } from 'App/Theme'
 import { View, Text } from 'react-native'
-import BottomTabBar from 'App/Components/BottomTabBar'
-import TopTabBar from 'App/Components/TopTabBar'
-import CovidVisualiser from 'App/Components/CovidVisualiser'
 import style from './HomeScreenStyle'
+import Guidelines from 'App/Components/Guidelines'
+import FAQS from 'App/Components/FAQS'
+import Policies from 'App/Components/Policies'
+import TopAppBarHome from 'App/Components/TopAppBarHome'
 export default class HomeScreen extends React.Component {
+  state = {
+    screen: 'Guidelines',
+  }
+  toggle(screen) {
+    this.setState({ screen: screen })
+  }
   render() {
     return (
       <View style={style.topContainer}>
-        {/* <TopTabBar /> */}
-        {/* <CovidVisualiser />         */}
-        {/* <Text>HomeScreen</Text> */}
-        <Text>HOme </Text>
+        <TopAppBarHome toggle={this.toggle.bind(this)} />
+        {this.state.screen === 'Guidelines' ? (
+          <Guidelines />
+        ) : this.state.screen === 'FAQS' ? (
+          <FAQS />
+        ) : this.state.screen === 'Policies' ? (
+          <Policies />
+        ) : (
+          <></>
+        )}
       </View>
     )
   }
