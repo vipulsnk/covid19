@@ -123,7 +123,7 @@ export default class Tweets extends Component {
     if (this.state.embedHtml) {
       return (
         <WebView
-          source={{ html: this.state.html }}
+          source={{ html: this.state.html,  baseUrl: 'https://twitter.com' }}
           ref={this.setWebViewRef}
           style={WEBVIEW(this.state.scrollViewHeight)}
           onMessage={this.onWebViewMessage}
