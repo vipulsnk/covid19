@@ -16,11 +16,14 @@ export default StyleSheet.create({
     justifyContent: 'space-around',
     width: 180,
   },
+  title: {
+    color: 'black'
+  },
   floaters: {
     // flex: 1,
     flexDirection: 'column',
-    backgroundColor: '#00aeff',
-    borderRadius: 60,
+    backgroundColor: '#4EB151',
+    borderRadius: 3,
     height: 33,
     justifyContent: 'space-around',
     alignItems: 'center',

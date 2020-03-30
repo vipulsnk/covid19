@@ -177,10 +177,16 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-alarm-notification')
+    implementation project(':react-native-alarm')
     implementation project(':react-native-webview')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
-
+    compile project(':react-native-alarm-notification')
+    compile project(':react-native-calendar-events')
+    compile fileTree(dir: "libs", include: ["*.jar"])
+    compile "com.android.support:appcompat-v7:28.0.0" // <--- minimum support library version
+    compile "com.facebook.react:react-native:+"  // From node_modules
     if (enableHermes) {
       def hermesPath = "../../node_modules/hermes-engine/android/";
       debugImplementation files(hermesPath + "hermes-debug.aar")

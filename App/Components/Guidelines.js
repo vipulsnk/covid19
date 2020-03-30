@@ -13,18 +13,18 @@ export default class Guidelines extends Component {
           <View style={style.floatMain}>
             <View style={style.floatCol}>
               <TouchableOpacity style={style.floaters} onPress={() => NavigationService.navigate('UM')}>
-                <Text>Using Masks</Text>
+                <Text style={style.title}>Using Masks</Text>
               </TouchableOpacity>
               <TouchableOpacity style={style.floaters} onPress={() =>  NavigationService.navigate('MB')}>
-                <Text>Myth-Busters</Text>
+                <Text style={style.title}>Myth-Busters</Text>
               </TouchableOpacity>
             </View>
             <View style={style.floatCol}>
               <TouchableOpacity style={style.floaters} onPress={() =>  NavigationService.navigate('GWP')}>
-                <Text>Getting Workplace Ready</Text>
+                <Text style={style.title}>Getting Workplace Ready</Text>
               </TouchableOpacity>
               <TouchableOpacity style={style.floaters} onPress={() =>  NavigationService.navigate('HP')}>
-                <Text>Healthy Parenting</Text>
+                <Text style={style.title}>Healthy Parenting</Text>
               </TouchableOpacity>
             </View>
           </View>
