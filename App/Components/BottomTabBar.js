@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import Icon1 from 'react-native-vector-icons/Ionicons'
+import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons'
 import styles from './BottomTabBarStyle'
+
 import NavigationService from 'App/Services/NavigationService'
 export default class BottomTabBar extends Component {
   render() {
@@ -16,7 +19,7 @@ export default class BottomTabBar extends Component {
         <TouchableOpacity
           style={styles.tabItem}
           onPress={() => NavigationService.navigate('Reminder')}>
-          <Icon name="alarm" size={25} />
+          <Icon2 name="alarm-multiple" size={25} />
           {/* <Text style={styles.tabTitle}>Reminders</Text> */}
         </TouchableOpacity>
         <TouchableOpacity
@@ -28,7 +31,7 @@ export default class BottomTabBar extends Component {
         <TouchableOpacity
           style={styles.tabItem}
           onPress={() => NavigationService.navigate('SocialMedia')}>
-          <Icon name="whatshot" size={25} />
+          <Icon1 name="logo-twitter" size={25} />
           {/* <Text style={styles.tabTitle}>News</Text> */}
         </TouchableOpacity>
         <TouchableOpacity

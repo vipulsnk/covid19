@@ -1,71 +1,72 @@
-import React, { Component } from "react";
-import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
-import TimePicker from "react-native-24h-timepicker";
- 
+import React, { Component } from 'react'
+import { StyleSheet, View, TouchableOpacity, Text } from 'react-native'
+import TimePicker from 'react-native-simple-time-picker'
+
 export default class TimePicker24 extends Component {
   constructor() {
-    super();
+    super()
     this.state = {
-      time: ""
-    };
+      selectedHours: 2,
+      //initial Hours
+      selectedMinutes: 0,
+      //initial Minutes
+    }
   }
- 
+
   onCancel() {
-    this.TimePicker.close();
+    this.TimePicker.close()
   }
- 
+
   onConfirm(hour, minute) {
-    this.setState({ time: `${hour}:${minute}` },() => console.log(this.state.time));
-    
-    this.TimePicker.close();
+    this.setState({ time: `${hour}:${minute}` }, () => console.log(this.state.time))
+
+    this.TimePicker.close()
   }
- 
+
   render() {
+    const { selectedHours, selectedMinutes } = this.state
     return (
-      <View style={styles.container}>
-        <Text style={styles.text}>REACT NATIVE</Text>
-        <Text style={styles.text}>24 HOURS FORMAT TIMEPICKER</Text>
-        <TouchableOpacity
-          onPress={() => this.TimePicker.open()}
-          style={styles.button}
-        >
-          <Text style={styles.buttonText}>Change Time</Text>
-        </TouchableOpacity>
-        <Text style={styles.text}>{this.state.time}</Text>
+      <View style={styles.picker}>
         <TimePicker
-          ref={ref => {
-            this.TimePicker = ref;
-          }}
-          onCancel={() => this.onCancel()}
-          onConfirm={(hour, minute) => this.onConfirm(hour, minute)}
+          selectedHours={selectedHours}
+          //initial Hourse value
+          selectedMinutes={selectedMinutes}
+          //initial Minutes value
+          onChange={(hours, minutes) => this.props.onSet(hours, minutes)}
+          hoursUnit="hrs"
+          minutesUnit="mins"
         />
       </View>
-    );
+    )
   }
 }
- 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    backgroundColor: "#fff",
-    paddingTop: 100
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    paddingTop: 100,
   },
   text: {
     fontSize: 20,
-    marginTop: 10
+    marginTop: 10,
   },
   button: {
-    backgroundColor: "#4EB151",
+    backgroundColor: '#4EB151',
     paddingVertical: 11,
     paddingHorizontal: 17,
     borderRadius: 3,
-    marginVertical: 50
+    marginVertical: 50,
   },
   buttonText: {
-    color: "#FFFFFF",
+    color: '#FFFFFF',
     fontSize: 16,
-    fontWeight: "600"
-  }
-});
- 
+    fontWeight: '600',
+  },
+  picker: {
+    width: 250,
+    backgroundColor: 'white',
+    borderRadius: 3,
+  },
+})
