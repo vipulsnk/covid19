@@ -7,12 +7,13 @@ import {
   StyleSheet,
   DeviceEventEmitter,
   TouchableOpacity,
+  TouchableHighlightBase,
 } from 'react-native'
 import moment from 'moment'
 import TimePicker24 from 'App/Components/TimePicker24'
 import ReactNativeAN from 'react-native-alarm-notification'
 import Icon from 'react-native-vector-icons/MaterialIcons'
-
+import ReminderComponent from 'App/Components/ReminderComponent'
 export default class ReminderScreen extends Component {
   state = {
     selectedHoursHands: 2,
@@ -90,235 +91,35 @@ export default class ReminderScreen extends Component {
     DeviceEventEmitter.removeListener('OnNotificationDismissed')
     DeviceEventEmitter.removeListener('OnNotificationOpened')
   }
+  setTime(hrs, mins) {
+    this.setState({ selectedHoursHands: hrs, selectedMinutesHands: mins })
+  }
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.subContainer}>
-          <View
-            style={{
-              display: 'flex',
-              flex: 1,
-              flexDirection: 'row',
-              justifyContent: 'space-evenly',
-              alignItems: 'center',
-              backgroundColor: 'red',
-            }}
-          >
-            <Text style={styles.title}>Set Reminder for Washing Hands</Text>
-          </View>
-          <View
-            style={{
-              display: 'flex',
-              flex: 1,
-              flexDirection: 'row',
-              justifyContent: 'space-evenly',
-              alignItems: 'center',
-              backgroundColor: 'orange',
-            }}
-          >
-            <TimePicker24
-              hrs={this.state.selectedHoursHands}
-              mins={this.state.selectedMinutesHands}
-              onSet={(hrs, mins) => {
-                this.setState({ selectedHoursHands: hrs, selectedMinutesHands: mins })
-              }}
-            />
-          </View>
-
-          <View
-            style={{
-              display: 'flex',
-              flex: 1,
-              flexDirection: 'row',
-              justifyContent: 'space-evenly',
-              alignItems: 'center',
-              backgroundColor: 'blue',
-            }}
-          >
-            {/* <Button title={'Set Reminder'} onPress={this.setAlarm.bind(this)} /> */}
-            <TouchableOpacity
-              style={styles.tabItem}
-              onPress={() =>
-                this.setAlarm(
-                  this.state.selectedHoursHands,
-                  this.state.selectedMinutesHands,
-                  'hands',
-                  '1',
-                  'Wash Hands title',
-                  'Wash Hands Msg',
-                  'Wash Hands Ticker',
-                  'green'
-                )
-              }
-            >
-              <Icon name="alarm-on" size={40} />
-              <Text style={styles.tabTitle}>Update</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.tabItem}
-              onPress={() =>
-                this.stopAndSetAlarm(
-                  this.state.selectedHoursHands,
-                  this.state.selectedMinutesHands,
-                  'hands',
-                  '1',
-                  'Wash Hands title',
-                  'Wash Hands Msg',
-                  'Wash Hands Ticker',
-                  'green'
-                )
-              }
-            >
-              <Icon name="snooze" size={40} />
-              <Text style={styles.tabTitle}>Snooze</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.tabItem} onPress={this.stopAlarm.bind(this)}>
-              <Icon name="alarm-off" size={40} />
-              <Text style={styles.tabTitle}>Dismiss</Text>
-            </TouchableOpacity>
-          </View>
+          <Text style={styles.desc}>
+            Washing your hands with soap and water or using alcohol-based hand rub kills viruses
+            that may be on your hands
+          </Text>
+          <ReminderComponent
+            stopAlarm={this.stopAlarm}
+            setAlarm={this.setAlarm}
+            stopAndSetAlarm={this.stopAndSetAlarm.bind(this)}
+            setTime={this.setTime.bind(this)}
+          />
         </View>
-        <View style={styles.subContainer}>
-          <View
-            style={{
-              display: 'flex',
-              flex: 1,
-              flexDirection: 'row',
-              justifyContent: 'space-evenly',
-              alignItems: 'center',
-              backgroundColor: 'red',
-            }}
-          >
-            <Text style={styles.title}>Set Reminder for Washing Hands</Text>
-          </View>
-          <View
-            style={{
-              display: 'flex',
-              flex: 1,
-              flexDirection: 'row',
-              justifyContent: 'space-evenly',
-              alignItems: 'center',
-              backgroundColor: 'orange',
-            }}
-          >
-            <TimePicker24
-              hrs={this.state.selectedHoursHands}
-              mins={this.state.selectedMinutesHands}
-              onSet={(hrs, mins) => {
-                this.setState({ selectedHoursHands: hrs, selectedMinutesHands: mins })
-              }}
-            />
-          </View>
 
-          <View
-            style={{
-              display: 'flex',
-              flex: 1,
-              flexDirection: 'row',
-              justifyContent: 'space-evenly',
-              alignItems: 'center',
-              backgroundColor: 'blue',
-            }}
-          >
-            {/* <Button title={'Set Reminder'} onPress={this.setAlarm.bind(this)} /> */}
-            <TouchableOpacity
-              style={styles.tabItem}
-              onPress={() =>
-                this.setAlarm(
-                  this.state.selectedHoursHands,
-                  this.state.selectedMinutesHands,
-                  'hands',
-                  '1',
-                  'Wash Hands title',
-                  'Wash Hands Msg',
-                  'Wash Hands Ticker',
-                  'green'
-                )
-              }
-            >
-              <Icon name="alarm-on" size={40} />
-              <Text style={styles.tabTitle}>Update</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.tabItem} onPress={this.stopAndSetAlarm.bind(this)}>
-              <Icon name="snooze" size={40} />
-              <Text style={styles.tabTitle}>Snooze</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.tabItem} onPress={this.stopAlarm.bind(this)}>
-              <Icon name="alarm-off" size={40} />
-              <Text style={styles.tabTitle}>Dismiss</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
         <View style={styles.subContainer}>
-          <View
-            style={{
-              display: 'flex',
-              flex: 1,
-              flexDirection: 'row',
-              justifyContent: 'space-evenly',
-              alignItems: 'center',
-              backgroundColor: 'red',
-            }}
-          >
-            <Text style={styles.title}>Set Reminder for Washing Hands</Text>
-          </View>
-          <View
-            style={{
-              display: 'flex',
-              flex: 1,
-              flexDirection: 'row',
-              justifyContent: 'space-evenly',
-              alignItems: 'center',
-              backgroundColor: 'orange',
-            }}
-          >
-            <TimePicker24
-              hrs={this.state.selectedHoursHands}
-              mins={this.state.selectedMinutesHands}
-              onSet={(hrs, mins) => {
-                this.setState({ selectedHoursHands: hrs, selectedMinutesHands: mins })
-              }}
-            />
-          </View>
-
-          <View
-            style={{
-              display: 'flex',
-              flex: 1,
-              flexDirection: 'row',
-              justifyContent: 'space-evenly',
-              alignItems: 'center',
-              backgroundColor: 'blue',
-            }}
-          >
-            {/* <Button title={'Set Reminder'} onPress={this.setAlarm.bind(this)} /> */}
-            <TouchableOpacity
-              style={styles.tabItem}
-              onPress={() =>
-                this.setAlarm(
-                  this.state.selectedHoursHands,
-                  this.state.selectedMinutesHands,
-                  'hands',
-                  '1',
-                  'Wash Hands title',
-                  'Wash Hands Msg',
-                  'Wash Hands Ticker',
-                  'green'
-                )
-              }
-            >
-              <Icon name="alarm-on" size={40} />
-              <Text style={styles.tabTitle}>Update</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.tabItem} onPress={this.stopAndSetAlarm.bind(this)}>
-              <Icon name="snooze" size={40} />
-              <Text style={styles.tabTitle}>Snooze</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.tabItem} onPress={this.stopAlarm.bind(this)}>
-              <Icon name="alarm-off" size={40} />
-              <Text style={styles.tabTitle}>Dismiss</Text>
-            </TouchableOpacity>
-          </View>
+          <Text style={styles.desc}>
+            Drink Warm Water dude
+          </Text>
+          <ReminderComponent
+            stopAlarm={this.stopAlarm}
+            setAlarm={this.setAlarm}
+            stopAndSetAlarm={this.stopAndSetAlarm.bind(this)}
+            setTime={this.setTime.bind(this)}
+          />
         </View>
       </View>
     )
@@ -329,15 +130,25 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "space-evenly"
   },
   subContainer: {
-    flex: 1,
-    backgroundColor: 'green',
-    flexDirection: 'column',
-    alignItems: 'stretch',
-    justifyContent: 'space-around',
+    borderColor: 'black',
+    // borderWidth: 0.5,
+    borderRadius: 5,
+    height: 320,
+    width: 350,
+    padding: 5,
+    backgroundColor: '#efefef',
+    elevation: 5
+    // margin: 10
   },
   title: {
+    fontSize: 20,
+  },
+  desc: {
     fontSize: 20,
   },
 })

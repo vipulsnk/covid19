@@ -3,9 +3,9 @@ import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/lib/integration/react'
 import createStore from 'App/Stores'
 import RootScreen from './Containers/Root/RootScreen'
-
+import { SafeAreaView, View, StyleSheet, StatusBar, Text } from 'react-native'
 const { store, persistor } = createStore()
-
+const THEME_COLOR = '#285E29';
 export default class App extends Component {
   render() {
     return (
@@ -24,6 +24,7 @@ export default class App extends Component {
           <RootScreen />
         </PersistGate>
       </Provider>
+      
     )
   }
 }

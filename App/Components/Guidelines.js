@@ -10,6 +10,7 @@ export default class Guidelines extends Component {
     return (
       <View>
         <ScrollView>
+          {/* <Text style={style.h1}>Quick References</Text> */}
           <View style={style.floatMain}>
             <View style={style.floatCol}>
               <TouchableOpacity style={style.floaters} onPress={() => NavigationService.navigate('UM')}>

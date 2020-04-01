@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   button: {
-    backgroundColor: '#4EB151',
+    // backgroundColor: '#/',
     paddingVertical: 11,
     paddingHorizontal: 17,
     borderRadius: 3,
@@ -66,7 +66,10 @@ const styles = StyleSheet.create({
   },
   picker: {
     width: 250,
-    backgroundColor: 'white',
-    borderRadius: 3,
+    // backgroundColor: 'teal',
+    borderRadius: 5,
+    // borderColor: "#121212",
+    // borderWidth: 2,
+    color: "red"
   },
 })

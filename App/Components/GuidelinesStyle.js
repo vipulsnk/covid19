@@ -4,10 +4,10 @@ import { Colors } from 'App/Theme'
 export default StyleSheet.create({
   floatMain: {
     height: 100,
-    paddingTop: 10,
+    paddingTop: 8,
     flexDirection: 'row',
-    // backgroundColor: 'white',
-    justifyContent: 'space-around',
+    // backgroundColor: 'black',
+    justifyContent: 'space-evenly',
   },
   floatCol: {
     // flex: 1,
@@ -17,12 +17,12 @@ export default StyleSheet.create({
     width: 180,
   },
   title: {
-    color: 'black'
+    color: '#ffffff'
   },
   floaters: {
     // flex: 1,
     flexDirection: 'column',
-    backgroundColor: '#4EB151',
+    backgroundColor: '#536DFE',
     borderRadius: 3,
     height: 33,
     justifyContent: 'space-around',
@@ -31,6 +31,7 @@ export default StyleSheet.create({
   h1: {
     fontSize: 20,
     fontWeight: 'bold',
+    padding: 5
   },
   infoContainer: {
     flex: 1,

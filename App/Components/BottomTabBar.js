@@ -14,30 +14,30 @@ export default class BottomTabBar extends Component {
           style={styles.tabItem}
           onPress={() => NavigationService.navigate('Statistics')}>
           <Icon name="insert-chart" size={25} />
-          {/* <Text style={styles.tabTitle}>Statistics</Text> */}
+          {/* <Text style={styles.tabTitle}>Reports</Text> */}
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.tabItem}
           onPress={() => NavigationService.navigate('Reminder')}>
           <Icon2 name="alarm-multiple" size={25} />
-          {/* <Text style={styles.tabTitle}>Reminders</Text> */}
+          {/* <Text style={styles.tabTitle}>Alarms</Text> */}
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.tabItem}
           onPress={() => NavigationService.navigate('MainScreen')}>
-          <Icon name="home" size={25} />
-          {/* <Text style={styles.tabTitle}>Home</Text> */}
+          <Icon name="home" color='#536DFE' size={25} />
+          {/* <Text style={{...styles.tabTitle, color: '#536DFE', fontWeight: "bold"}}>Home</Text> */}
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.tabItem}
           onPress={() => NavigationService.navigate('SocialMedia')}>
-          <Icon1 name="logo-twitter" size={25} />
-          {/* <Text style={styles.tabTitle}>News</Text> */}
+          <Icon1 name="logo-twitter"   size={25} />
+          {/* <Text style={styles.tabTitle}>Tweets</Text> */}
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.tabItem}
           onPress={() => NavigationService.navigate('Visualiser')}>
-          <Icon name="public" size={25} />
+          <Icon name="public"  size={25} />
           {/* <Text style={styles.tabTitle}>Global</Text> */}
         </TouchableOpacity>
       </View>
