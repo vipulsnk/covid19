@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native'
 import FaqCard from './FaqCard.js'
 import NavigationService from 'App/Services/NavigationService'
-var faq1 = require('App/Assets/Jsons/faq_mohfw.json')
+var faq1 = require('../Assets/Jsons/faq.json')
+var faq2 = require('../Assets/Jsons/faq2.json')
+var faq3 = require('../Assets/Jsons/faq3.json')
 
 export default class FAQS extends Component {
   render() {
@@ -40,6 +42,12 @@ export default class FAQS extends Component {
         </View>
         <View style={styles.container}>
           {faq1.map((ar) => (
+            <FaqCard data={ar} />
+          ))}
+          {faq2.map((ar) => (
+            <FaqCard data={ar} />
+          ))}
+          {faq3.map((ar) => (
             <FaqCard data={ar} />
           ))}
         </View>

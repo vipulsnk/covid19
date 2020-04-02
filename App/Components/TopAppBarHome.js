@@ -18,10 +18,10 @@ export default class TopAppBar extends Component {
     return (
       <View style={styles.headerContainer}>
         <TouchableOpacity style={styles.tabItem} onPress={() => this.props.toggle('FAQS')}>
-          <Text style={styles.tabTitle}>FAQS</Text>
+          <Text style={{...styles.tabTitle, color : '#536DFE'}}>FAQS</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.tabItem} onPress={() => this.props.toggle('Guidelines')}>
-          <Text style={styles.tabTitle}>Guidelines</Text>
+        <TouchableOpacity style={styles.tabItem} onPress={() => this.props.toggle('General')}>
+          <Text style={styles.tabTitle}>General</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.tabItem} onPress={() => this.props.toggle('Policies')}>
           <Text style={styles.tabTitle}>Policies</Text>
@@ -39,12 +39,12 @@ const styles = StyleSheet.create({
   tabTitle: {
     fontWeight: 'bold',
     fontSize: 16,
-    color: '#3c3c3c',
+    color: '#121212',
     paddingTop: 4,
     fontFamily: 'montserrat',
   },
   headerContainer: {
-    backgroundColor: '#EEEEEE',
+    backgroundColor: '#efefef',
     elevation: 5,
     height: 60,
     flexDirection: 'row',

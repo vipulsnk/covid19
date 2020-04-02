@@ -1,13 +1,13 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 import style from './HomeScreenStyle'
-import Guidelines from 'App/Components/Guidelines'
+import General from 'App/Components/General'
 import FAQS from 'App/Components/FAQS'
 import Policies from 'App/Components/Policies'
 import TopAppBarHome from 'App/Components/TopAppBarHome'
 export default class HomeScreen extends React.Component {
   state = {
-    screen: 'Guidelines',
+    screen: 'General',
   }
   toggle(screen) {
     this.setState({ screen: screen })
@@ -16,8 +16,8 @@ export default class HomeScreen extends React.Component {
     return (
       <View style={style.topContainer}>
         <TopAppBarHome toggle={this.toggle.bind(this)} />
-        {this.state.screen === 'Guidelines' ? (
-          <Guidelines />
+        {this.state.screen === 'General' ? (
+          <General />
         ) : this.state.screen === 'FAQS' ? (
           <FAQS />
         ) : this.state.screen === 'Policies' ? (
