@@ -39,6 +39,8 @@ target 'covid19' do
 
   pod 'react-native-background-timer', :path => '../node_modules/react-native-background-timer'
 
+  pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
+
   target 'covid19Tests' do
     inherit! :search_paths
     # Pods for testing

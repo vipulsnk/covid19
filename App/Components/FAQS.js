@@ -40,7 +40,7 @@ export default class FAQS extends Component {
         </View>
         <View style={styles.container}>
           {faq1.map((ar) => (
-            <FaqCard data={ar} />
+            <FaqCard key={ar.id} data={ar} />
           ))}
         </View>
       </ScrollView>
