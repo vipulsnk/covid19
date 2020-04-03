@@ -1,7 +1,21 @@
-import React, { useCallback } from 'react'
-import { Alert, Button, Linking, StyleSheet, View, Text } from 'react-native'
+import React, { useCallback, Component } from 'react'
+import {
+  Alert,
+  Button,
+  Linking,
+  StyleSheet,
+  View,
+  Text,
+  Image,
+  ImageBackground,
+} from 'react-native'
 // import { Avatar, Card, Title, Paragraph } from 'react-native-paper';
 import { Avatar, Card, Title, Paragraph } from 'react-native-paper'
+import YoutuberItem from 'App/Components/YoutuberItem'
+import { TouchableOpacity } from 'react-native-gesture-handler'
+import Icon from 'react-native-vector-icons/FontAwesome'
+import YouTube from 'react-native-youtube'
+import YoutubeHack from './YoutubeHack'
 const OpenURLButton = ({ url, children }) => {
   // const url = 'whatsapp://send?text=hello&phone=919013151515'
   const handlePress = useCallback(async () => {
@@ -22,25 +36,25 @@ const OpenURLButton = ({ url, children }) => {
   )
 }
 
-const GeneralCard = (props) => {
-  const data = props.data
-  return (
-    // <View style={styles.card}>
+export default class GeneralCard extends Component {
+  render() {
+    const data = this.props.data
+    return (
       <Card style={styles.card}>
         <Card.Content>
-          <Title>{props.data.title}</Title>
-          <Paragraph>{props.data.content}</Paragraph>
-          {/* <View style={styles.container}> */}
-          {/* {Object.keys(obj).map((key) => (
-          <OpenURLButton url={obj[key]}>{key}</OpenURLButton>
-        ))} */}
-          {/* </View> */}
+          <Title>{data.title}</Title>
+          {data.video ? (
+            <YoutubeHack data={data} show={this.props.show} toggleVideo={this.props.toggleVideo} />
+          ) : (
+            <></>
+          )}
+          <Paragraph>{this.props.data.content}</Paragraph>
         </Card.Content>
       </Card>
-    // </View>
-  )
+    )
+  }
 }
-export default GeneralCard
+
 const styles = StyleSheet.create({
   card: {
     backgroundColor: '#efefef',
@@ -49,5 +63,10 @@ const styles = StyleSheet.create({
     width: 370,
     elevation: 5,
     marginTop: 20,
+  },
+  text: {
+    color: 'grey',
+    fontSize: 30,
+    fontWeight: 'bold',
   },
 })

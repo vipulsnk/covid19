@@ -9,9 +9,18 @@ import Helpline from 'App/Components/Helpline'
 import Whatsapp from 'App/Components/Whatsapp'
 import Donation from 'App/Components/Donation'
 import GeneralCard from 'App/Components/GeneralCard'
+import general from 'App/Assets/Jsons/general'
 var faq1 = require('App/Assets/Jsons/faq_mohfw.json')
 export default class General extends Component {
+  state = {
+    show: 'bPITHEiFWLc',
+    ids: ['bPITHEiFWLc', '6Ooz1GZsQ70'],
+  }
+  toggleVideo(show) {
+    this.setState({ show: show })
+  }
   render() {
+    console.log('rendering again')
     return (
       <ScrollView>
         {/* <Text style={style.h1}>Quick References</Text> */}
@@ -25,8 +34,8 @@ export default class General extends Component {
           </View>
           <Donation />
           <View style={style.infoContainer}>
-            {faq1.map((ar) => (
-              <GeneralCard key={ar.id} data={ar} />
+            {general.map((g) => (
+              <GeneralCard data={g} show={this.state.show} toggleVideo={this.toggleVideo.bind(this)}/>
             ))}
           </View>
         </View>

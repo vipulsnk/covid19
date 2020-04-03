@@ -2,6 +2,20 @@ import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 
 export default class Donation extends Component {
+  componentDidMount(){
+    // fetch('http://54.166.69.228:5000/api/all', { 
+    //       method: 'POST',
+    //       headers: {
+    //               Accept: 'application/json',
+    //               'Content-Type': 'application/json',
+    //             },
+    //       body: JSON.stringify({
+    //           'locations' : []
+    //         }), 
+    //     })
+    //   .then((res) => console.log(res))
+    //   .catch((err) => console.warn(err));
+  }
   render() {
     return (
       <View>
