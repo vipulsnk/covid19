@@ -10,6 +10,7 @@ import Whatsapp from 'App/Components/Whatsapp'
 import Donation from 'App/Components/Donation'
 import GeneralCard from 'App/Components/GeneralCard'
 import general from 'App/Assets/Jsons/general'
+import MoreInfo from 'App/Components/MoreInfo'
 var faq1 = require('App/Assets/Jsons/faq_mohfw.json')
 export default class General extends Component {
   state = {
@@ -35,8 +36,13 @@ export default class General extends Component {
           <Donation />
           <View style={style.infoContainer}>
             {general.map((g) => (
-              <GeneralCard data={g} show={this.state.show} toggleVideo={this.toggleVideo.bind(this)}/>
+              <GeneralCard
+                data={g}
+                show={this.state.show}
+                toggleVideo={this.toggleVideo.bind(this)}
+              />
             ))}
+            <MoreInfo />
           </View>
         </View>
       </ScrollView>
