@@ -15,6 +15,7 @@ import More1 from 'App/Components/More1'
 import More2 from 'App/Components/More2'
 import More3 from 'App/Components/More3'
 import More4 from 'App/Components/More4'
+import UPIScreen from 'App/Containers/UPIScreen/UPIScreen'
 /**
  * The root screen contains the application's navigation.
  *
@@ -40,7 +41,8 @@ const StackNavigator = createStackNavigator(
     M1 : More1,
     M2 : More2,
     M3 : More3,
-    M4 : More4
+    M4 : More4,
+    UPI: UPIScreen
 
   },
   {

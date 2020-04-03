@@ -1,8 +1,7 @@
 import React, { useCallback } from 'react'
-import { Alert, Button, Linking, StyleSheet, View, Text } from 'react-native'
+import { Alert, Button, Linking, StyleSheet, View, Text, TouchableOpacity } from 'react-native'
 // import { Avatar, Card, Title, Paragraph } from 'react-native-paper';
 import { Avatar, Card, Title, Paragraph } from 'react-native-paper'
-import { TouchableOpacity } from 'react-native-gesture-handler'
 const OpenURLButton = ({ url, children }) => {
   // const url = 'whatsapp://send?text=hello&phone=919013151515'
   const handlePress = useCallback(async () => {

@@ -10,9 +10,8 @@ import {
   ImageBackground,
 } from 'react-native'
 // import { Avatar, Card, Title, Paragraph } from 'react-native-paper';
-import { Avatar, Card, Title, Paragraph } from 'react-native-paper'
+import { Avatar, Card, Title, Paragraph, TouchableOpacity } from 'react-native-paper'
 import YoutuberItem from 'App/Components/YoutuberItem'
-import { TouchableOpacity } from 'react-native-gesture-handler'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import YouTube from 'react-native-youtube'
 import YoutubeHack from './YoutubeHack'

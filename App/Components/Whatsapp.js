@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import {Alert, View, Text, Image, StyleSheet, Linking } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import { Alert, View, Text, Image, StyleSheet, Linking, TouchableOpacity } from 'react-native'
 
 const handlePress = async () => {
   // Checking if the link is supported for links with custom URL scheme.
@@ -18,13 +17,11 @@ export default class Whatsapp extends Component {
   render() {
     return (
       <TouchableOpacity style={styles.container} onPress={handlePress}>
-        <Image style={styles.tinyLogo}
-              source={require('App/Assets/Images/icons8-whatsapp-48.png')}>
-
-        </Image>
-        <Text style={styles.text}>
-          Join Whatsapp Channel
-        </Text>
+        <Image
+          style={styles.tinyLogo}
+          source={require('App/Assets/Images/icons8-whatsapp-48.png')}
+        />
+        <Text style={styles.text}>Join Whatsapp Channel</Text>
       </TouchableOpacity>
     )
   }
@@ -36,8 +33,8 @@ const styles = StyleSheet.create({
     height: 40,
   },
   container: {
-    flexDirection: "column",
-    alignItems: "center",
+    flexDirection: 'column',
+    alignItems: 'center',
     // backgroundColor: "#ffed75"
   },
   text: {

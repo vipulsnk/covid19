@@ -1,25 +1,11 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
-
+import NavigationService from 'App/Services/NavigationService'
 export default class Donation extends Component {
-  componentDidMount(){
-    // fetch('http://54.166.69.228:5000/api/all', { 
-    //       method: 'POST',
-    //       headers: {
-    //               Accept: 'application/json',
-    //               'Content-Type': 'application/json',
-    //             },
-    //       body: JSON.stringify({
-    //           'locations' : []
-    //         }), 
-    //     })
-    //   .then((res) => console.log(res))
-    //   .catch((err) => console.warn(err));
-  }
   render() {
     return (
       <View>
-        <TouchableOpacity style={styles.floaters} onPress={() => console.log('Donation Made')}>
+        <TouchableOpacity style={styles.floaters} onPress={() => NavigationService.navigate('UPI')}>
           <Text style={styles.title}>Make a Donation</Text>
         </TouchableOpacity>
       </View>

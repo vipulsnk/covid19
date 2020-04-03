@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import ReactNative, { Button } from 'react-native'
-import Icon from 'react-native-vector-icons/MaterialIcons'
 import { WebView } from 'react-native-webview'
-
+import Icon from 'react-native-vector-icons/MaterialIcons'
 const {
   RefreshControl,
   ViewStyle,
@@ -12,58 +11,61 @@ const {
   ActivityIndicator,
   Text,
   TouchableOpacity,
+  TouchableHighlight,
 } = ReactNative
 
-export default class TopAppBarTweets extends Component {
-  
+export default class TopAppBar extends Component {
+  state = {
+    screen: 'WHO',
+  }
+  toggle(screen) {
+    this.setState({ screen: screen })
+    this.props.toggle(screen)
+  }
   render() {
     return (
-      // <View style={styles.mainContainer}>
       <View style={styles.headerContainer}>
-        <View style={styles.leftHeaderContainer}>
-          <Text>hii</Text>
-        </View>
-        <View style={styles.rightHeaderContainer}>
-          <TouchableOpacity
-            style={styles.tabItem}
-            onPress={this.props.onToggle}
+        <TouchableOpacity style={styles.tabItem} onPress={() => this.toggle('MOIHFW')}>
+          <Text style={this.state.screen === 'MOIHFW' ? styles.tabTitleHighlighted : styles.tabTitle}>
+            MOIHFW
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.tabItem} onPress={() => this.toggle('WHO')}>
+          <Text
+            style={this.state.screen === 'WHO' ? styles.tabTitleHighlighted : styles.tabTitle}
           >
-            <Icon name="more-vert" size={25} />
-            {/* <Text style={styles.tabTitle}>Statistics</Text> */}
-          </TouchableOpacity>
-        </View>
+            WHO
+          </Text>
+        </TouchableOpacity>
       </View>
-      // <View style={styles.contentContainer} />
-      // </View>
     )
   }
 }
 const styles = StyleSheet.create({
-  mainContainer: {
-    flex: 1,
-    backgroundColor: '#F5FCFF',
-    height: 24,
+  tabItem: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  tabTitleHighlighted: {
+    fontWeight: 'bold',
+    fontSize: 16,
+    color: '#121212',
+    paddingTop: 4,
+    color: '#536DFE',
+  },
+  tabTitle: {
+    fontWeight: 'bold',
+    fontSize: 16,
+    color: '#121212',
+    paddingTop: 4,
   },
   headerContainer: {
-    backgroundColor: '#EEEEEE',
+    backgroundColor: '#efefef',
     elevation: 5,
-    alignItems: 'center',
     height: 60,
     flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  leftHeaderContainer: {
-    alignItems: 'flex-start',
-    flexDirection: 'row',
-    paddingLeft: 10,
-  },
-  rightHeaderContainer: {
-    alignItems: 'flex-end',
-    flexDirection: 'row',
-    paddingRight: 10,
-  },
-  contentContainer: {
-    flex: 6,
+    justifyContent: 'space-around',
   },
   logoText: {
     color: 'white',

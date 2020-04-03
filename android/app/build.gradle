@@ -189,7 +189,6 @@ dependencies {
     implementation project(':react-native-linear-gradient')
     implementation project(':react-native-background-timer')
     implementation project(':react-native-alarm-notification')
-    implementation project(':react-native-alarm')
     implementation project(':react-native-webview')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules

@@ -26,7 +26,7 @@ const WEBVIEW = (height) => ({
   height,
 })
 
-export default class Tweets extends Component {
+export default class TweetsWHO extends Component {
   webview = null
   constructor(props) {
     super(props)

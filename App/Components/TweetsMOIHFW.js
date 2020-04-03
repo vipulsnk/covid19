@@ -37,12 +37,8 @@ export default class Tweets extends Component {
       isPullToRefreshEnabled: false,
       scrollViewHeight: 0,
       isModalVisible: false,
-      uri: 'https://twitter.com/who?lang=en'
+      uri: 'https://twitter.com/MoHFW_INDIA'
     }
-  }
-
-  toggleModal = () => {
-    this.setState({ isModalVisible: !this.state.isModalVisible })
   }
 
   setWebViewRef = (ref) => {
@@ -68,8 +64,9 @@ export default class Tweets extends Component {
     } catch (error) {}
   }
 
-  componentDidMount() {
-    this.setupEmbed()
+  async componentDidMount() {
+    await this.setupEmbed()
+    this.setState({loading: false})
   }
 
   async setupEmbed() {
@@ -133,11 +130,6 @@ export default class Tweets extends Component {
       )
     }
   }
-  onChangeTweets(account) {
-    this.setState({uri: account})
-    this.toggleModal()
-    this.onRefresh()
-  }
   render() {
     console.log('render method called!')
     const { isPullToRefreshEnabled } = this.state
@@ -161,7 +153,7 @@ export default class Tweets extends Component {
             />
           }
         >
-          {this.renderEmbed()}
+          {this.state.loading? this.renderLoading() : this.renderEmbed()}
         </ScrollView>
       </>
     )
