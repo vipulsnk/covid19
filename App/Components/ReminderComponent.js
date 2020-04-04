@@ -11,30 +11,9 @@ import {
 import TimePicker24 from 'App/Components/TimePicker24'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 export default class ReminderComponent extends Component {
-  state = {
-    selectedHoursHands: 2,
-    selectedMinutesHands: 0,
-    selectedHoursFood: 4,
-    selectedMinutesFood: 0,
-    selectedHoursDrink: 0,
-    selectedMinutesDrink: 30,
-    open: false,
-  }
   render() {
     return (
       <View style={styles.subContainer}>
-        {/* <View
-          style={{
-            display: 'flex',
-            flex: 1,
-            flexDirection: 'row',
-            justifyContent: 'space-evenly',
-            alignItems: 'center',
-            backgroundColor: 'white',
-          }}
-        >
-          
-        </View> */}
         <View
           style={{
             display: 'flex',
@@ -45,11 +24,12 @@ export default class ReminderComponent extends Component {
             // backgroundColor: 'white',
           }}
         >
+          {console.log(this.props.hrs)}
           <TimePicker24
-            hrs={this.state.selectedHoursHands}
-            mins={this.state.selectedMinutesHands}
+            hrs={this.props.hrs}
+            mins={this.props.mins}
             onSet={(hrs, mins) => {
-              this.setState({ selectedHoursHands: hrs, selectedMinutesHands: mins })
+              this.props.setTime(hrs, mins)
             }}
           />
           <View
@@ -61,44 +41,16 @@ export default class ReminderComponent extends Component {
               // backgroundColor: 'white',
             }}
           >
-            <TouchableOpacity
-              style={styles.tabItem}
-              onPress={() =>
-                this.props.setAlarm(
-                  this.state.selectedHoursHands,
-                  this.state.selectedMinutesHands,
-                  'hands',
-                  '1',
-                  'Wash Hands title',
-                  'Wash Hands Msg',
-                  'Wash Hands Ticker',
-                  'green'
-                )
-              }
-            >
-              <Icon name="alarm-on" size={40} />
+            <TouchableOpacity style={styles.tabItem} onPress={this.props.setAlarm}>
+              <Icon name="alarm-on" size={25} />
               <Text style={styles.tabTitle}>Update</Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.tabItem}
-              onPress={() =>
-                this.props.stopAndSetAlarm(
-                  this.state.selectedHoursHands,
-                  this.state.selectedMinutesHands,
-                  'hands',
-                  '1',
-                  'Wash Hands title',
-                  'Wash Hands Msg',
-                  'Wash Hands Ticker',
-                  'green'
-                )
-              }
-            >
-              <Icon name="snooze" size={40}  backgroundColor="#efefef"/>
+            <TouchableOpacity style={styles.tabItem} onPress={this.props.stopAndSetAlarm}>
+              <Icon name="snooze" size={25} backgroundColor="#efefef" />
               <Text style={styles.tabTitle}>Snooze</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.tabItem} onPress={this.props.stopAlarm}>
-              <Icon name="alarm-off" size={40} />
+              <Icon name="alarm-off" size={25} />
               <Text style={styles.tabTitle}>Dismiss</Text>
             </TouchableOpacity>
           </View>
@@ -125,5 +77,7 @@ const styles = StyleSheet.create({
   },
   tabItem: {
     // backgroundColor: "#efefef"
-  }
+    flexDirection: "column",
+    alignItems: "center"
+  },
 })

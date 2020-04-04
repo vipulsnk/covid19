@@ -9,6 +9,7 @@ import { userService } from 'App/Services/UserService'
  * Feel free to remove it.
  */
 export function* fetchUser() {
+  console.log("fetchin users")
   // Dispatch a redux action using `put()`
   // @see https://redux-saga.js.org/docs/basics/DispatchingActions.html
   yield put(ExampleActions.fetchUserLoading())

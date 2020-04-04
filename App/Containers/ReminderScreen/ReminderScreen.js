@@ -18,8 +18,6 @@ export default class ReminderScreen extends Component {
   state = {
     selectedHoursHands: 2,
     selectedMinutesHands: 0,
-    selectedHoursFood: 4,
-    selectedMinutesFood: 0,
     selectedHoursDrink: 0,
     selectedMinutesDrink: 30,
     open: false,
@@ -103,22 +101,75 @@ export default class ReminderScreen extends Component {
             that may be on your hands
           </Text>
           <ReminderComponent
+            hrs={this.state.selectedHoursHands}
+            mins={this.state.selectedMinutesHands}
             stopAlarm={this.stopAlarm}
-            setAlarm={this.setAlarm}
-            stopAndSetAlarm={this.stopAndSetAlarm.bind(this)}
-            setTime={this.setTime.bind(this)}
+            setAlarm={() =>
+              this.setAlarm(
+                this.state.selectedHoursHands,
+                this.state.selectedMinutesHands,
+                'hands',
+                '1',
+                'Wash Hands title',
+                'Wash Hands Msg',
+                'Wash Hands Ticker',
+                'green'
+              )
+            }
+            stopAndSetAlarm={() =>
+              this.stopAndSetAlarm(
+                this.state.selectedHoursHands,
+                this.state.selectedMinutesHands,
+                'hands',
+                '1',
+                'Wash Hands title',
+                'Wash Hands Msg',
+                'Wash Hands Ticker',
+                'green'
+              )
+            }
+            setTime={(hrs, mins) =>
+              this.setState({ selectedHoursHands: hrs, selectedMinutesHands: mins })
+            }
           />
         </View>
 
         <View style={styles.subContainer}>
           <Text style={styles.desc}>
-            Drink Warm Water dude
+            Washing your hands with soap and water or using alcohol-based hand rub kills viruses
+            that may be on your hands
           </Text>
           <ReminderComponent
+            hrs={this.state.selectedHoursDrink}
+            mins={this.state.selectedMinutesDrink}
             stopAlarm={this.stopAlarm}
-            setAlarm={this.setAlarm}
-            stopAndSetAlarm={this.stopAndSetAlarm.bind(this)}
-            setTime={this.setTime.bind(this)}
+            setAlarm={() =>
+              this.setAlarm(
+                this.state.selectedHoursDrink,
+                this.state.selectedMinutesDrink,
+                'hands',
+                '2',
+                'Drink Warm Water title',
+                'Drink Warm Water Msg',
+                'Drink Warm Water Ticker',
+                'green'
+              )
+            }
+            stopAndSetAlarm={() =>
+              this.stopAndSetAlarm(
+                this.state.selectedHoursDrink,
+                this.state.selectedMinutesDrink,
+                'hands',
+                '2',
+                'Drink Warm Water title',
+                'Drink Warm Water Msg',
+                'Drink Warm Water Ticker',
+                'green'
+              )
+            }
+            setTime={(hrs, mins) =>
+              this.setState({ selectedHoursHands: hrs, selectedMinutesDrink: mins })
+            }
           />
         </View>
       </View>
@@ -130,9 +181,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "space-evenly"
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
   },
   subContainer: {
     borderColor: 'black',
@@ -142,7 +193,7 @@ const styles = StyleSheet.create({
     width: 350,
     padding: 5,
     backgroundColor: '#efefef',
-    elevation: 5
+    elevation: 5,
     // margin: 10
   },
   title: {
