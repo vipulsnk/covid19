@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import ReactNative, { Button } from 'react-native'
 import { WebView } from 'react-native-webview'
-const { RefreshControl, ViewStyle, ScrollView, View, StyleSheet, ActivityIndicator } = ReactNative
-
+const { RefreshControl, Text, ViewStyle, ScrollView, View, StyleSheet, ActivityIndicator } = ReactNative
+import styles from './TweetsStyle'
+import Modal from 'react-native-modal'
+import TopAppBarTweets from 'App/Components/TopAppBarTweets'
 // prettier-ignore
 const INJECTED_JS = `
   window.onscroll = function() {
@@ -31,19 +33,16 @@ export default class Tweets extends Component {
     this.state = {
       loading: true,
       embedHtml: null,
-      html: `<!DOCTYPE html>\
-      <html>\
-        <head>\
-          <meta charset="utf-8">\
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">\
-          </head>\
-          <body>\
-            <h1>And I am not null</h1>\
-          </body>\
-      </html>`,
+      html: null,
       isPullToRefreshEnabled: false,
       scrollViewHeight: 0,
+      isModalVisible: false,
+      uri: 'https://twitter.com/who?lang=en'
     }
+  }
+
+  toggleModal = () => {
+    this.setState({ isModalVisible: !this.state.isModalVisible })
   }
 
   setWebViewRef = (ref) => {
@@ -63,7 +62,9 @@ export default class Tweets extends Component {
     console.log('inside onWebViewMessage')
     try {
       const { scrollTop } = JSON.parse(data)
-      this.setState({ isPullToRefreshEnabled: scrollTop === 0 },  () => console.log("onWebViewMessage callback") )
+      this.setState({ isPullToRefreshEnabled: scrollTop === 0 }, () =>
+        console.log('onWebViewMessage callback')
+      )
     } catch (error) {}
   }
 
@@ -75,7 +76,7 @@ export default class Tweets extends Component {
     try {
       let tweetUrl =
         'https://publish.twitter.com/oembed?url=' +
-        encodeURIComponent('https://twitter.com/who?lang=en')
+        encodeURIComponent(this.state.uri)
       const resp = await fetch(tweetUrl, {
         method: 'GET',
         headers: { Accepts: 'application/json' },
@@ -83,23 +84,23 @@ export default class Tweets extends Component {
       const json = await resp.json()
       let embedHtml = json.html
       let html = `<!DOCTYPE html>\
-    <html>\
-      <head>\
-        <meta charset="utf-8">\
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">\
-        </head>\
-        <body>\
-          ${embedHtml}\
-        </body>\
-    </html>`
+                  <html>\
+                    <head>\
+                      <meta charset="utf-8">\
+                      <meta name="viewport" content="width=device-width, initial-scale=1.0">\
+                      </head>\
+                      <body>\
+                        ${embedHtml}\
+                      </body>\
+                  </html>`
       console.log('Before Done')
       this.setState(
         {
-          loading: false,
+          // loading: false,
           embedHtml: embedHtml,
           html: html,
         },
-        () => console.log("setupEmbed callback")
+        () => console.log('setupEmbed callback')
       )
       console.log('after Done')
     } catch (error) {
@@ -109,7 +110,7 @@ export default class Tweets extends Component {
 
   renderLoading() {
     if (this.state.loading) {
-      console.log("loading!")
+      console.log('loading!')
       return (
         <View style={styles.loadingWrap}>
           <ActivityIndicator />
@@ -121,56 +122,56 @@ export default class Tweets extends Component {
   renderEmbed() {
     if (this.state.embedHtml) {
       return (
-          <WebView
-            source={{ html: this.state.html }}
-            ref={this.setWebViewRef}
-            style={WEBVIEW(this.state.scrollViewHeight)}
-            onMessage={this.onWebViewMessage}
-            injectedJavaScript={INJECTED_JS}
-          />
+        <WebView
+          source={{ html: this.state.html,  baseUrl: 'https://twitter.com' }}
+          ref={this.setWebViewRef}
+          style={WEBVIEW(this.state.scrollViewHeight)}
+          onMessage={this.onWebViewMessage}
+          injectedJavaScript={INJECTED_JS}
+          startInLoadingState={true}
+        />
       )
     }
   }
-
+  onChangeTweets(account) {
+    this.setState({uri: account})
+    this.toggleModal()
+    this.onRefresh()
+  }
   render() {
-    console.log("render method called!")
-    const { scrollViewHeight, isPullToRefreshEnabled } = this.state
+    console.log('render method called!')
+    const { isPullToRefreshEnabled } = this.state
     return (
-      <ScrollView
-        style={SCROLLVIEW_CONTAINER}
-        onLayout={(e) => this.setState({ scrollViewHeight: e.nativeEvent.layout.height }, () => console.log("onlayout callback") )}
-        refreshControl={
-          <RefreshControl
-            refreshing={false}
-            enabled={isPullToRefreshEnabled}
-            onRefresh={this.onRefresh}
-            tintColor="red"
-            colors={['blue']}
-            style={{ backgroundColor: 'black' }}
-          />
-        }
-      >
-        {this.renderLoading()}
-        {this.renderEmbed()}
-      </ScrollView>
+      <>
+        <TopAppBarTweets onToggle={this.toggleModal}/>
+        <Modal isVisible={this.state.isModalVisible}>
+          <View style={{ flex: 1, backgroundColor: 'white' }}>
+            <Text>Please Choose Tweets</Text>
+            <Button title="WHO" onPress={() => this.onChangeTweets('https://twitter.com/who?lang=en')} />
+            <Button title="MOIHFW" onPress={() => this.onChangeTweets('https://twitter.com/MoHFW_INDIA')} />
+          </View>
+        </Modal>
+        <ScrollView
+          style={SCROLLVIEW_CONTAINER}
+          onLayout={(e) =>
+            this.setState({ scrollViewHeight: e.nativeEvent.layout.height }, () =>
+              console.log('onlayout callback')
+            )
+          }
+          refreshControl={
+            <RefreshControl
+              refreshing={false}
+              enabled={isPullToRefreshEnabled}
+              onRefresh={this.onRefresh}
+              tintColor="red"
+              colors={['blue']}
+              style={{ backgroundColor: 'black' }}
+            />
+          }
+        >
+          {this.renderEmbed()}
+        </ScrollView>
+      </>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  loadingWrap: {
-    flex: 1,
-    backgroundColor: '#999',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  webviewWrap: {
-    flex: 1,
-    borderWidth: 1,
-    borderRadius: 4,
-    borderColor: '#999',
-  },
-  webview: {
-    flex: 1,
-  },
-})

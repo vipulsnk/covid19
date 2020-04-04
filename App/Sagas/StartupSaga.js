@@ -12,7 +12,6 @@ export function* startup() {
 
   // Add more operations you need to do at startup here
   // ...
-
   // When those operations are finished we redirect to the main screen
   NavigationService.navigateAndReset('MainScreen')
 }
