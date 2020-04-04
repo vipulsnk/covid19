@@ -33,6 +33,14 @@ target 'covid19' do
   pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
+  pod 'react-native-webview', :path => '../node_modules/react-native-webview'
+
+  pod 'RNAlarm', :path => '../node_modules/react-native-alarm'
+
+  pod 'react-native-background-timer', :path => '../node_modules/react-native-background-timer'
+
+  pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
+
   target 'covid19Tests' do
     inherit! :search_paths
     # Pods for testing
