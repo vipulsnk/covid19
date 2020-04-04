@@ -7,6 +7,8 @@ import BackgroundGeolocation from '@mauron85/react-native-background-geolocation
 const { store, persistor } = createStore()
 import CacheStore from 'react-native-cache-store';
 
+import { SafeAreaView, View, StyleSheet, StatusBar, Text } from 'react-native'
+const THEME_COLOR = '#285E29';
 export default class App extends Component {
   constructor(props) {
     CacheStore.set('name', 'Tanmay Anand');
@@ -24,7 +26,7 @@ export default class App extends Component {
       desiredAccuracy: BackgroundGeolocation.HIGH_ACCURACY,
       stationaryRadius: 50,
       distanceFilter: 50,
-      notificationTitle: 'Gyann Kavach',
+      notificationTitle: 'Gyan Kavach',
       notificationText: 'Be Aware of Covid-19',
       debug: false,
       startOnBoot: false,
@@ -101,6 +103,7 @@ export default class App extends Component {
           <RootScreen />
         </PersistGate>
       </Provider>
+      
     )
   }
 }

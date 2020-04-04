@@ -11,6 +11,11 @@ import MythBusterScreen from 'App/Containers/MythBusterScreen/MythBusterScreen'
 import GettingWorkplaceReadyScreen from 'App/Containers/GettingWorkplaceReadyScreen/GettingWorkplaceReadyScreen'
 import HealthyParentingScreen from 'App/Containers/HealthyParentingScreen/HealthyParentingScreen'
 import UsingMasks from 'App/Containers/UsingMaskScreen/UsingMasks'
+import More1 from 'App/Components/More1'
+import More2 from 'App/Components/More2'
+import More3 from 'App/Components/More3'
+import More4 from 'App/Components/More4'
+import UPIScreen from 'App/Containers/UPIScreen/UPIScreen'
 /**
  * The root screen contains the application's navigation.
  *
@@ -32,7 +37,12 @@ const StackNavigator = createStackNavigator(
     MB: MythBusterScreen,
     GWP: GettingWorkplaceReadyScreen,
     HP: HealthyParentingScreen,
-    UM: UsingMasks
+    UM: UsingMasks,
+    M1 : More1,
+    M2 : More2,
+    M3 : More3,
+    M4 : More4,
+    UPI: UPIScreen
 
   },
   {

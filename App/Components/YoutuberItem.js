@@ -4,7 +4,7 @@ import YouTube from 'react-native-youtube'
 export default class YoutuberItem extends Component {
   render() {
     return (
-      <View>
+      <View style={{ height: 300, borderRadius: 5, flex: 1 }}>
         <YouTube
           videoId={this.props.vId}// The YouTube video ID
           apiKey="AIzaSyDX_yILQOpdLFGdbn3p1w6_Zf60VcFhuWA"
@@ -15,7 +15,7 @@ export default class YoutuberItem extends Component {
           onChangeState={(e) => this.setState({ status: e.state })}
           onChangeQuality={(e) => this.setState({ quality: e.quality })}
           onError={(e) => this.setState({ error: e.error })}
-          style={{ height: 300 }}
+          style={{ height: 300, }}
         />
       </View>
     )

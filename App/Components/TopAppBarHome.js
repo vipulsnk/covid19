@@ -11,20 +11,38 @@ const {
   ActivityIndicator,
   Text,
   TouchableOpacity,
+  TouchableHighlight,
 } = ReactNative
 
 export default class TopAppBar extends Component {
+  state = {
+    screen: 'General',
+  }
+  toggle(screen) {
+    this.setState({ screen: screen })
+    this.props.toggle(screen)
+  }
   render() {
     return (
       <View style={styles.headerContainer}>
-        <TouchableOpacity style={styles.tabItem} onPress={() => this.props.toggle('FAQS')}>
-          <Text style={styles.tabTitle}>FAQS</Text>
+        <TouchableOpacity style={styles.tabItem} onPress={() => this.toggle('FAQS')}>
+          <Text style={this.state.screen === 'FAQS' ? styles.tabTitleHighlighted : styles.tabTitle}>
+            FAQS
+          </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.tabItem} onPress={() => this.props.toggle('Guidelines')}>
-          <Text style={styles.tabTitle}>Guidelines</Text>
+        <TouchableOpacity style={styles.tabItem} onPress={() => this.toggle('General')}>
+          <Text
+            style={this.state.screen === 'General' ? styles.tabTitleHighlighted : styles.tabTitle}
+          >
+            General
+          </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.tabItem} onPress={() => this.props.toggle('Policies')}>
-          <Text style={styles.tabTitle}>Policies</Text>
+        <TouchableOpacity style={styles.tabItem} onPress={() => this.toggle('Policies')}>
+          <Text
+            style={this.state.screen === 'Policies' ? styles.tabTitleHighlighted : styles.tabTitle}
+          >
+            Policies
+          </Text>
         </TouchableOpacity>
       </View>
     )
@@ -36,15 +54,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  tabTitleHighlighted: {
+    fontWeight: 'bold',
+    fontSize: 16,
+    color: '#121212',
+    paddingTop: 4,
+    color: '#536DFE',
+  },
   tabTitle: {
     fontWeight: 'bold',
     fontSize: 16,
-    color: '#3c3c3c',
+    color: '#121212',
     paddingTop: 4,
-    fontFamily: 'montserrat',
   },
   headerContainer: {
-    backgroundColor: '#EEEEEE',
+    backgroundColor: '#efefef',
     elevation: 5,
     height: 60,
     flexDirection: 'row',

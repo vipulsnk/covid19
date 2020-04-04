@@ -5,7 +5,11 @@ import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
 import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;
 import com.calendarevents.CalendarEventsPackage;
-
+import android.content.Intent;
+import android.os.Bundle;
+import com.emekalites.react.alarm.notification.BundleJSONConverter;
+import com.facebook.react.modules.core.DeviceEventManagerModule;
+import org.json.JSONObject;
 public class MainActivity extends ReactActivity {
 
     /**
@@ -30,5 +34,15 @@ public class MainActivity extends ReactActivity {
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         CalendarEventsPackage.onRequestPermissionsResult(requestCode, permissions, grantResults);
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+    @Override
+    public void onNewIntent(Intent intent) {
+        try {
+            Bundle bundle = intent.getExtras();
+            JSONObject data = BundleJSONConverter.convertToJSON(bundle);
+            getReactInstanceManager().getCurrentReactContext().getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class).emit("OnNotificationOpened", data.toString());
+        } catch (Exception e){
+            System.err.println("Exception when handling notification openned. " + e);
+        }
     }
 }

@@ -142,15 +142,7 @@ export default class Tweets extends Component {
     console.log('render method called!')
     const { isPullToRefreshEnabled } = this.state
     return (
-      <>
-        <TopAppBarTweets onToggle={this.toggleModal}/>
-        <Modal isVisible={this.state.isModalVisible}>
-          <View style={{ flex: 1, backgroundColor: 'white' }}>
-            <Text>Please Choose Tweets</Text>
-            <Button title="WHO" onPress={() => this.onChangeTweets('https://twitter.com/who?lang=en')} />
-            <Button title="MOIHFW" onPress={() => this.onChangeTweets('https://twitter.com/MoHFW_INDIA')} />
-          </View>
-        </Modal>
+      <>        
         <ScrollView
           style={SCROLLVIEW_CONTAINER}
           onLayout={(e) =>
