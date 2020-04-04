@@ -1,12 +1,20 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
-import YoutuberItem from 'App/Components/YoutuberItem'
-export default class StatisticScreen extends Component {
+import DataVisualiser from 'App/Components/DataVisualiser'
+import { View, Text, StyleSheet } from 'react-native'
+
+export default class VisualiserScreen extends Component {
   render() {
     return (
-      <View>
-        <YoutuberItem vId="SD4Z8dlZPd8" />
+      <View style={styles.topContainer}>
+        {/* <TopTabBar /> */}
+        <DataVisualiser />        
       </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  topContainer: {
+    flex: 1
+  }
+});
