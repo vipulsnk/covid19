@@ -2,7 +2,7 @@
 # App for raising awareness for coronavirus, under IEEE Bangalore Covid-19 App contest
 
 ## Environmet setup
-Install react native cli
+- [Install react native cli Quickstart](https://reactnative.dev/docs/environment-setup)
 
 ## Directory layout
 
@@ -32,7 +32,7 @@ You also need to install the dependencies required by React Native:
 ## Running the project
 
 Assuming you have all the requirements installed, you can setup and run the project by running:
-
+- `git clone git@github.com:vipulsnk/covid19.git` to clone th repository
 - `npm install` to install the dependencies
 - run the following steps for your platform
 
