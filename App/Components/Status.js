@@ -1,7 +1,49 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, Image } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
+const cheerio = require('react-native-cheerio')
 export default class Status extends Component {
+  state = {
+    data: {},
+  }
+  async componentDidMount() {
+    const searchUrl = `https://www.mohfw.gov.in/`
+    const response = await fetch(searchUrl) // fetch page
+    const htmlString = await response.text() // get response text
+    const $ = cheerio.load(htmlString) // parse HTML string
+    let table = $('#site-dashboard').find('ul')
+    // console.log(table.find('li').first().find('strong').text());
+    const data = {
+      active: table
+        .find('li')
+        .first()
+        .find('strong')
+        .text(),
+      cured: table
+        .find('li')
+        .next()
+        .first()
+        .find('strong')
+        .text(),
+      death: table
+        .find('li')
+        .next()
+        .next()
+        .first()
+        .find('strong')
+        .text(),
+      migrated: table
+        .find('li')
+        .next()
+        .next()
+        .next()
+        .first()
+        .find('strong')
+        .text(),
+    }
+    console.log(data)
+    this.setState({ data: data })
+  }
   render() {
     return (
       <View style={styles.floatMain}>
@@ -31,7 +73,7 @@ export default class Status extends Component {
               source={require('App/Assets/Images/icon-infected.png')}
             />
             <View>
-              <Text style={styles.value}>2784</Text>
+              <Text style={styles.value}>{this.state.data.active}</Text>
               <Text style={styles.caption}>Active Cases</Text>
             </View>
           </LinearGradient>
@@ -68,7 +110,7 @@ export default class Status extends Component {
               source={require('App/Assets/Images/icon-inactive.png')}
             />
             <View>
-              <Text style={styles.value}>212</Text>
+              <Text style={styles.value}>{this.state.data.cured}</Text>
               <Text style={styles.caption}>Recovered</Text>
             </View>
           </LinearGradient>
@@ -91,12 +133,9 @@ export default class Status extends Component {
             ]}
             style={styles.linearGradient}
           >
-            <Image
-              style={styles.tinyLogo}
-              source={require('App/Assets/Images/icon-death.png')}
-            />
+            <Image style={styles.tinyLogo} source={require('App/Assets/Images/icon-death.png')} />
             <View>
-              <Text style={styles.value}>75</Text>
+              <Text style={styles.value}>{this.state.data.death}</Text>
               <Text style={styles.caption}>Deaths</Text>
             </View>
           </LinearGradient>
@@ -129,12 +168,9 @@ export default class Status extends Component {
             ]}
             style={styles.linearGradient}
           >
-            <Image
-              style={styles.tinyLogo}
-              source={require('App/Assets/Images/icon-active.png')}
-            />
+            <Image style={styles.tinyLogo} source={require('App/Assets/Images/icon-active.png')} />
             <View>
-              <Text style={styles.value}>1</Text>
+              <Text style={styles.value}>{this.state.data.migrated}</Text>
               <Text style={styles.caption}>Migrated</Text>
             </View>
           </LinearGradient>
