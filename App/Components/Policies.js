@@ -1,37 +1,62 @@
 import React, { Component } from 'react'
 import { View, Text, ScrollView, StyleSheet } from 'react-native'
 import Policy from './Policy.js'
-
-export default class FAQS extends Component {
+import { ActivityIndicator } from 'react-native-paper'
+const cheerio = require('react-native-cheerio')
+export default class Policies extends Component {
   state = {
-    updates: [],
+    highlight: [],
+    loader: true,
   }
-  componentDidMount() {
-    //DO ALL YOUR FETCHING AND PARSING HERE, THIS EXECUTES BEFORE RENDER METHOD
-    const updates = [
-      {
-        date: '01.01.2020',
-        title:
-          'Revised Webinar schedule for training of  Nursing officers on COVID-19 by AIIMS New Delhi',
-        link: 'https://www.mohfw.gov.in/pdf/RevisedCOVIDWebinarforNursingofficers.pdf',
-      },
-      {
-        date: '01.01.2020',
-        title: 'Training for Nursing Personnal',
-        link: 'https://www.youtube.com/watch?v=mdrK_zhHD88&feature=youtu.be',
-      },
-    ]
-    this.setState({ updates: updates })
+  async componentDidMount() {
+    const searchUrl = `https://www.mohfw.gov.in/`
+    const response = await fetch(searchUrl) // fetch page
+    const htmlString = await response.text() // get response text
+    const $ = cheerio.load(htmlString) // parse HTML string
+    const highlight = []
+    let section = $('#latest-update')
+      .find('.row')
+      .next()
+      .find('div')
+    let index = 0
+    while (section.find('a').html() !== null) {
+      highlight.push({
+        key: index + 1,
+        date: section
+          .find('p')
+          .find('strong')
+          .html(),
+        link: section.find('a').attr('href'),
+        title: section.find('a').html(),
+      })
+      index += 1
+      section = section.next()
+    }
+    this.setState({ highlight: highlight, loader: false })
   }
   render() {
     return (
-      <ScrollView>
-        <View style={styles.container}>
-          {this.state.updates.map((update) => (
-            <Policy data={update} />
-          ))}
-        </View>
-      </ScrollView>
+      <>
+        {this.state.loader ? (
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <ActivityIndicator color="#536DFE"/>
+          </View>
+        ) : (
+          <ScrollView>
+            <View style={styles.container}>
+              {this.state.highlight.map((update) => (
+                <Policy data={update} key={update.id}/>
+              ))}
+            </View>
+          </ScrollView>
+        )}
+      </>
     )
   }
 }
