@@ -5,7 +5,6 @@ const { RefreshControl, Text, ViewStyle, ScrollView, View, StyleSheet, ActivityI
 import styles from './TweetsStyle'
 import Modal from 'react-native-modal'
 import TopAppBarTweets from 'App/Components/TopAppBarTweets'
-import Spinner from 'react-native-loading-spinner-overlay';
 // prettier-ignore
 const INJECTED_JS = `
   window.onscroll = function() {
@@ -38,8 +37,7 @@ export default class TweetsWHO extends Component {
       isPullToRefreshEnabled: false,
       scrollViewHeight: 0,
       isModalVisible: false,
-      uri: 'https://twitter.com/who?lang=en',
-      spinner: false
+      uri: 'https://twitter.com/who?lang=en'
     }
   }
 
@@ -70,13 +68,9 @@ export default class TweetsWHO extends Component {
     } catch (error) {}
   }
 
-  componentDidMount() {
-    setInterval(() => {
-      this.setState({
-        spinner: !this.state.spinner
-      });
-    }, 3000);
-    this.setupEmbed()
+  async componentDidMount() {
+    await this.setupEmbed()
+    this.setState({loading: false})
   }
 
   async setupEmbed() {
@@ -168,7 +162,7 @@ export default class TweetsWHO extends Component {
             />
           }
         >
-          {this.renderEmbed()}
+           {this.renderEmbed()}
         </ScrollView>
       </>
     )
