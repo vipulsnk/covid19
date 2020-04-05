@@ -1,7 +1,15 @@
 import React, { Component } from 'react'
 import ReactNative, { Button } from 'react-native'
 import { WebView } from 'react-native-webview'
-const { RefreshControl, Text, ViewStyle, ScrollView, View, StyleSheet, ActivityIndicator } = ReactNative
+const {
+  RefreshControl,
+  Text,
+  ViewStyle,
+  ScrollView,
+  View,
+  StyleSheet,
+  ActivityIndicator,
+} = ReactNative
 import styles from './TweetsStyle'
 import Modal from 'react-native-modal'
 import TopAppBarTweets from 'App/Components/TopAppBarTweets'
@@ -37,7 +45,7 @@ export default class Tweets extends Component {
       isPullToRefreshEnabled: false,
       scrollViewHeight: 0,
       isModalVisible: false,
-      uri: 'https://twitter.com/MoHFW_INDIA'
+      uri: 'https://twitter.com/MoHFW_INDIA',
     }
   }
 
@@ -66,14 +74,12 @@ export default class Tweets extends Component {
 
   async componentDidMount() {
     await this.setupEmbed()
-    this.setState({loading: false})
+    this.setState({ loading: false })
   }
 
   async setupEmbed() {
     try {
-      let tweetUrl =
-        'https://publish.twitter.com/oembed?url=' +
-        encodeURIComponent(this.state.uri)
+      let tweetUrl = 'https://publish.twitter.com/oembed?url=' + encodeURIComponent(this.state.uri)
       const resp = await fetch(tweetUrl, {
         method: 'GET',
         headers: { Accepts: 'application/json' },
@@ -120,7 +126,7 @@ export default class Tweets extends Component {
     if (this.state.embedHtml) {
       return (
         <WebView
-          source={{ html: this.state.html,  baseUrl: 'https://twitter.com' }}
+          source={{ html: this.state.html, baseUrl: 'https://twitter.com' }}
           ref={this.setWebViewRef}
           style={WEBVIEW(this.state.scrollViewHeight)}
           onMessage={this.onWebViewMessage}
@@ -134,7 +140,7 @@ export default class Tweets extends Component {
     console.log('render method called!')
     const { isPullToRefreshEnabled } = this.state
     return (
-      <>        
+      <>
         <ScrollView
           style={SCROLLVIEW_CONTAINER}
           onLayout={(e) =>
@@ -153,7 +159,7 @@ export default class Tweets extends Component {
             />
           }
         >
-          {this.state.loading? this.renderLoading() : this.renderEmbed()}
+          {this.renderEmbed()}
         </ScrollView>
       </>
     )
