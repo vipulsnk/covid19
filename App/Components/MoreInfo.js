@@ -37,6 +37,18 @@ export default class MoreInfo extends Component {
             >
               <Text style={styles.title}>12 guides to help work from home</Text>
             </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.floaters}
+              onPress={async () => await Linking.openURL("https://www.mohfw.gov.in/")}
+            >
+              <Text style={styles.title}>MOH GOI Website</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.floaters}
+              onPress={async () => await Linking.openURL("https://www.who.int/")}
+            >
+              <Text style={styles.title}>WHO Website</Text>
+            </TouchableOpacity>
         </View>
       </View>
     )
