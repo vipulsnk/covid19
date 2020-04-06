@@ -5,7 +5,7 @@ import createStore from 'App/Stores'
 import RootScreen from './Containers/Root/RootScreen'
 import { SafeAreaView, View, StyleSheet, StatusBar, Text } from 'react-native'
 const { store, persistor } = createStore()
-const THEME_COLOR = '#285E29';
+const THEME_COLOR = '#285E29'
 export default class App extends Component {
   render() {
     return (
@@ -21,10 +21,11 @@ export default class App extends Component {
          * @see https://github.com/rt2zz/redux-persist/blob/master/docs/PersistGate.md
          */}
         <PersistGate loading={null} persistor={persistor}>
-          <RootScreen />
+          {/* <SafeAreaView> */}
+            <RootScreen />
+          {/* </SafeAreaView> */}
         </PersistGate>
       </Provider>
-      
     )
   }
 }

@@ -55,7 +55,6 @@ export default class ExampleThree extends Component {
       ])
       table = table.next()
     }
-    console.log(data)
     this.setState({ async_done: true })
     this.setState({ data: data })
     const highlight = []

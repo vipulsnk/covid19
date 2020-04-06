@@ -4,7 +4,7 @@ import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
 import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;
-import com.calendarevents.CalendarEventsPackage;
+// import com.calendarevents.CalendarEventsPackage;
 import android.content.Intent;
 import android.os.Bundle;
 import com.emekalites.react.alarm.notification.BundleJSONConverter;
@@ -30,11 +30,11 @@ public class MainActivity extends ReactActivity {
             }
         };
     }
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        CalendarEventsPackage.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-    }
+    // @Override
+    // public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    //     // CalendarEventsPackage.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    //     super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    // }
     @Override
     public void onNewIntent(Intent intent) {
         try {

@@ -20,7 +20,6 @@ export default class General extends Component {
     this.setState({ show: show })
   }
   render() {
-    console.log('rendering again')
     return (
       <ScrollView>
         {/* <Text style={style.h1}>Quick References</Text> */}

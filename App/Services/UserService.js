@@ -37,7 +37,6 @@ function fetchUser() {
   // return 'passing'
   return userApiClient.get(number.toString()).then((response) => {
     if (in200s(response.status)) {
-      console.log(response.data)
       return response.data
     }
 

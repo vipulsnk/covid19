@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Linking } from 'react-native'
 import FaqCard from './FaqCard.js'
 import NavigationService from 'App/Services/NavigationService'
 var faq1 = require('App/Assets/Jsons/faq_mohfw.json')
@@ -26,7 +26,11 @@ export default class FAQS extends Component {
           <View style={styles.floatCol}>
             <TouchableOpacity
               style={styles.floaters}
-              onPress={() => NavigationService.navigate('GWP')}
+              onPress={async () =>
+                await Linking.openURL(
+                  'https://www.who.int/docs/default-source/coronaviruse/advice-for-workplace-clean-19-03-2020.pdf'
+                )
+              }
             >
               <Text style={styles.title}>Getting Workplace Ready</Text>
             </TouchableOpacity>

@@ -6413,16 +6413,6 @@ react-native-background-timer@^2.2.0:
   resolved "https://registry.yarnpkg.com/react-native-background-timer/-/react-native-background-timer-2.2.0.tgz#ff82d30899209b924983cc00e6ce174b8de5054a"
   integrity sha512-Y7N6diSFko/FCJPMmB0PoBlmY1kEcma7qDVwn8t7zi12GLqpe/Vwls97onkSD8/QL+BR33BygUHOrLTPwgeKfg==
 
-react-native-calendar-events@^1.7.3:
-  version "1.7.3"
-  resolved "https://registry.yarnpkg.com/react-native-calendar-events/-/react-native-calendar-events-1.7.3.tgz#1c9f9989bfec5ae7c3a3c72572f0d68d43de0d41"
-  integrity sha512-IbtfPDpD6PLx6XQQK0X5f9gIt12iyItoSlMbPgfalz646KUqppU2L0xo4v7kZFy1D2tVDX0gpuPlwJMT2dTeNg==
-
-react-native-calendar-reminders@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/react-native-calendar-reminders/-/react-native-calendar-reminders-1.1.2.tgz#4601ae9867009db4d27f803314999072d34dbe9e"
-  integrity sha1-RgGumGcAnbTSf4AzFJmQctNNvp4=
-
 react-native-cheerio@^1.0.0-rc.4:
   version "1.0.0-rc.4"
   resolved "https://registry.yarnpkg.com/react-native-cheerio/-/react-native-cheerio-1.0.0-rc.4.tgz#bab0c1fe5888bbd69481d9b928d58b525f18f3b1"

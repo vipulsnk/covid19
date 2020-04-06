@@ -1,0 +1,6 @@
+info Found Xcode workspace "covid19.xcworkspace"
+info Building (using "xcodebuild -workspace covid19.xcworkspace -configuration Debug -scheme covid19 -destination id=FCF02EAD-E0A8-409F-97FA-207217D190F3 -derivedDataPath build/covid19")
+...................................................................................................
+info Installing "build/covid19/Build/Products/Debug-iphonesimulator/covid19.app"
+info Launching "org.reactjs.native.example.covid19"
+success Successfully launched the app on the simulator

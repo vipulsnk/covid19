@@ -13,7 +13,7 @@ import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
-import com.calendarevents.CalendarEventsPackage;
+// import com.calendarevents.CalendarEventsPackage;
 import android.app.NotificationManager;
 import android.app.NotificationChannel;
 import android.content.Context;

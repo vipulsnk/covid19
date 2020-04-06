@@ -1,7 +1,15 @@
 import React, { Component } from 'react'
 import ReactNative, { Button } from 'react-native'
 import { WebView } from 'react-native-webview'
-const { RefreshControl, Text, ViewStyle, ScrollView, View, StyleSheet, ActivityIndicator } = ReactNative
+const {
+  RefreshControl,
+  Text,
+  ViewStyle,
+  ScrollView,
+  View,
+  StyleSheet,
+  ActivityIndicator,
+} = ReactNative
 import styles from './TweetsStyle'
 import Modal from 'react-native-modal'
 import TopAppBarTweets from 'App/Components/TopAppBarTweets'
@@ -37,43 +45,37 @@ export default class Tweets extends Component {
       isPullToRefreshEnabled: false,
       scrollViewHeight: 0,
       isModalVisible: false,
-      uri: 'https://twitter.com/MoHFW_INDIA'
+      uri: 'https://twitter.com/MoHFW_INDIA',
     }
   }
 
   setWebViewRef = (ref) => {
-    console.log('called setWebview ref')
     this.webView = ref
   }
 
   onRefresh = async () => {
-    console.log('before')
     await this.setupEmbed()
-    console.log('after')
+
     this.webview && this.webview.reload()
   }
 
   onWebViewMessage = (e) => {
     const { data } = e.nativeEvent
-    console.log('inside onWebViewMessage')
+
     try {
       const { scrollTop } = JSON.parse(data)
-      this.setState({ isPullToRefreshEnabled: scrollTop === 0 }, () =>
-        console.log('onWebViewMessage callback')
-      )
+      this.setState({ isPullToRefreshEnabled: scrollTop === 0 })
     } catch (error) {}
   }
 
   async componentDidMount() {
     await this.setupEmbed()
-    this.setState({loading: false})
+    this.setState({ loading: false })
   }
 
   async setupEmbed() {
     try {
-      let tweetUrl =
-        'https://publish.twitter.com/oembed?url=' +
-        encodeURIComponent(this.state.uri)
+      let tweetUrl = 'https://publish.twitter.com/oembed?url=' + encodeURIComponent(this.state.uri)
       const resp = await fetch(tweetUrl, {
         method: 'GET',
         headers: { Accepts: 'application/json' },
@@ -90,16 +92,12 @@ export default class Tweets extends Component {
                         ${embedHtml}\
                       </body>\
                   </html>`
-      console.log('Before Done')
-      this.setState(
-        {
-          // loading: false,
-          embedHtml: embedHtml,
-          html: html,
-        },
-        () => console.log('setupEmbed callback')
-      )
-      console.log('after Done')
+
+      this.setState({
+        // loading: false,
+        embedHtml: embedHtml,
+        html: html,
+      })
     } catch (error) {
       console.warn("some error occured, couldn't refresh!", error)
     }
@@ -120,7 +118,7 @@ export default class Tweets extends Component {
     if (this.state.embedHtml) {
       return (
         <WebView
-          source={{ html: this.state.html,  baseUrl: 'https://twitter.com' }}
+          source={{ html: this.state.html, baseUrl: 'https://twitter.com' }}
           ref={this.setWebViewRef}
           style={WEBVIEW(this.state.scrollViewHeight)}
           onMessage={this.onWebViewMessage}
@@ -131,17 +129,12 @@ export default class Tweets extends Component {
     }
   }
   render() {
-    console.log('render method called!')
     const { isPullToRefreshEnabled } = this.state
     return (
-      <>        
+      <>
         <ScrollView
           style={SCROLLVIEW_CONTAINER}
-          onLayout={(e) =>
-            this.setState({ scrollViewHeight: e.nativeEvent.layout.height }, () =>
-              console.log('onlayout callback')
-            )
-          }
+          onLayout={(e) => this.setState({ scrollViewHeight: e.nativeEvent.layout.height })}
           refreshControl={
             <RefreshControl
               refreshing={false}
@@ -153,7 +146,7 @@ export default class Tweets extends Component {
             />
           }
         >
-          {this.state.loading? this.renderLoading() : this.renderEmbed()}
+          {this.renderEmbed()}
         </ScrollView>
       </>
     )
