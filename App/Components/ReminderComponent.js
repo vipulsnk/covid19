@@ -24,7 +24,6 @@ export default class ReminderComponent extends Component {
             // backgroundColor: 'white',
           }}
         >
-          {console.log(this.props.hrs)}
           <TimePicker24
             hrs={this.props.hrs}
             mins={this.props.mins}
